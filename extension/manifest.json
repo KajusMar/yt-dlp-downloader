@@ -34,10 +34,6 @@
       "64": "icons/icon64.png"
     }
   },
-  "options_ui": {
-    "page": "options/options.html",
-    "browser_style": true
-  },
   "permissions": [
     "nativeMessaging",
     "activeTab",
