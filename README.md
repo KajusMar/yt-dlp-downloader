@@ -1,163 +1,171 @@
 # yt-dlp Video Downloader
 
-A Firefox WebExtension that lets you download videos from YouTube and 1000+ other sites using **yt-dlp** — no quality limits, no ads, completely open source.
+[![Firefox Add-on](https://img.shields.io/badge/Firefox-Add--on-orange?logo=firefox-browser&logoColor=white)](https://addons.mozilla.org/firefox/addon/yt-dlp-video-downloader/)
+[![GitHub Release](https://img.shields.io/github/v/release/KajusMar/yt-dlp-downloader?logo=github)](https://github.com/KajusMar/yt-dlp-downloader/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://python.org)
+[![yt-dlp](https://img.shields.io/badge/yt--dlp-2026.07-red?logo=youtube&logoColor=white)](https://github.com/yt-dlp/yt-dlp)
 
-## Features
+**Download videos from YouTube and 1000+ sites directly in Firefox — no quality limits, no ads, open source.**
 
-- **Downloads from 1000+ sites** (YouTube, Vimeo, Twitch, Twitter/X, Reddit, TikTok, Instagram, Facebook, etc.)
-- **No quality limits** — download up to 4K/8K where available
-- **Audio extraction** — save as MP3, M4A, Opus, etc.
-- **Auto-detects videos** on pages — adds download buttons to embedded videos
-- **Context menu integration** — right-click any link/video to download
-- **Keyboard shortcut** — `Alt+D` to download from current page
-- **Progress tracking** — real-time download progress in popup
-- **Open source** — MIT licensed, no tracking, no analytics
+![Screenshot](docs/screenshot.png)
 
-## Installation
+## ✨ Features
 
-### Quick Install (Windows)
+- **1000+ sites supported** via [yt-dlp](https://github.com/yt-dlp/yt-dlp) (YouTube, Vimeo, Twitch, Twitter/X, TikTok, Instagram, Reddit, etc.)
+- **Auto-detects videos** on pages — adds download buttons on hover
+- **Context menu** → "Download with yt-dlp" on any link/video
+- **Format selection**: Best (≤1080p), Best Available, 720p, 480p, Audio Only (MP3)
+- **Real-time progress** in popup
+- **Keyboard shortcut**: `Alt+D`
+- **No external servers** — runs locally via native messaging
+- **Privacy-focused** — no tracking, no accounts, no data collection
 
-1. **Install prerequisites:**
-   - [Python 3.8+](https://python.org/downloads)
-   - [yt-dlp](https://github.com/yt-dlp/yt-dlp) — `pip install -U yt-dlp`
-   - [FFmpeg](https://ffmpeg.org/download.html) — for video merging (optional but recommended)
+## 🚀 Quick Install
 
-2. **Run the installer:**
-   ```cmd
-   scripts\install_windows.bat
-   ```
+### Option 1: One-click (Recommended)
 
-3. **Install the extension:**
-   - Open Firefox → `about:addons`
-   - Click the gear icon → "Install Add-on From File"
-   - Select `yt-dlp-downloader.xpi`
-   - Restart Firefox
+[![Install from GitHub Releases](https://img.shields.io/badge/📥_Install-Latest_Release-orange?style=for-the-badge&logo=github)](https://github.com/KajusMar/yt-dlp-downloader/releases/latest)
 
-4. **Done!** Click the extension icon to use it.
+1. Click the button above → download `yt-dlp-downloader.xpi`
+2. Open Firefox → `about:addons` → Gear icon → **Install Add-on From File**
+3. Select the `.xpi` → **Restart Firefox**
+4. Done! 🎉
 
-### Manual Install (Any Platform)
+### Option 2: From Source
 
-1. Copy `native_host/com.kajusmar.ytdlp_downloader.json` to Firefox's native messaging hosts directory:
-   - **Windows:** `%APPDATA%\Mozilla\NativeMessagingHosts\`
-   - **macOS:** `~/Library/Application Support/Mozilla/NativeMessagingHosts/`
-   - **Linux:** `~/.mozilla/native-messaging-hosts/`
+```bash
+# Prerequisites
+winget install yt-dlp ffmpeg python  # Windows
+# OR: brew install yt-dlp ffmpeg python  # macOS
+# OR: sudo apt install yt-dlp ffmpeg python3  # Linux
 
-2. Edit the manifest to point to the correct `host.py` path
+# Clone & build
+git clone https://github.com/KajusMar/yt-dlp-downloader
+cd yt-dlp-downloader
+./scripts/build.sh  # Creates .xpi in dist/
+```
 
-3. Install the `.xpi` file in Firefox
+### Option 3: Automated Install (Windows)
 
-## Usage
+```cmd
+git clone https://github.com/KajusMar/yt-dlp-downloader
+cd yt-dlp-downloader
+scripts\install_windows.bat
+```
 
-### From Extension Popup
-1. Navigate to any video page
-2. Click the extension icon
-3. **Detected** tab shows videos found on the page
-4. **Manual URL** tab lets you paste any URL
-5. Choose format and click **Download**
+This installs:
+- ✅ Native messaging host (registers with Firefox)
+- ✅ yt-dlp + ffmpeg (if missing)
+- ✅ Extension manifest
 
-### Context Menu
-Right-click any video, link, or page → "Download video with yt-dlp"
+Then just drag `dist/yt-dlp-downloader.xpi` into `about:addons`.
 
-### Keyboard Shortcut
-Press `Alt+D` on any video page to start downloading
+## 📖 Usage
 
-## Supported Sites
+| Action | How |
+|--------|-----|
+| **Download from current page** | Click extension icon → **Detected** tab → click **Download** |
+| **Download from URL** | Click extension icon → **Manual URL** tab → paste link → **Get Info** → **Download** |
+| **Right-click any link** | Context menu → **Download with yt-dlp** / **Audio Only** / **Best Quality** |
+| **Keyboard shortcut** | Press `Alt+D` on any video page |
+| **Watch progress** | Extension popup → **Downloads** tab |
 
-yt-dlp supports 1000+ sites including:
-- YouTube (including Shorts, Live, Playlists)
-- Vimeo
-- Twitch (VODs, clips)
-- Twitter / X
-- Reddit (v.redd.it, gfycat, etc.)
-- TikTok
-- Instagram (Reels, posts, stories)
-- Facebook
-- Bilibili
-- SoundCloud
-- Bandcamp
-- And many more — [full list](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
+## ⚙️ Requirements
 
-## Format Options
+| Tool | Version | Purpose |
+|------|---------|---------|
+| **Python** | 3.8+ | Runs native host |
+| **yt-dlp** | 2024+ | Video downloading |
+| **ffmpeg** | 4.0+ | Video/audio merging |
+| **Firefox** | 57+ | Extension runtime |
 
-| Format | Description |
-|--------|-------------|
-| Best quality (≤1080p) | Best video+audio, capped at 1080p |
-| Best available | Best quality regardless of resolution |
-| 720p | 720p video + audio |
-| 480p | 480p video + audio |
-| Audio only (MP3) | Extract audio as MP3 |
+## 🔧 How It Works
 
-## Download Location
+```
+┌─────────────┐     Native Messaging      ┌──────────────────┐
+│  Firefox    │ ◄──────────────────────► │  Python Host     │
+│  Extension  │   (JSON over stdin/stdout) │  (native_host/)  │
+└─────────────┘                           └────────┬─────────┘
+                                                   │
+                                                   ▼
+                                          ┌──────────────────┐
+                                          │  yt-dlp + ffmpeg │
+                                          │  (system PATH)   │
+                                          └──────────────────┘
+```
 
-Default: `~/Videos/yt-dlp/` (Windows: `%USERPROFILE%\Videos\yt-dlp\`)
+The extension **never** communicates with external servers. All downloads run locally on your machine.
 
-## Development
+## 🛠️ Development
+
+```bash
+# Install dev dependencies
+pip install -r requirements-dev.txt
+
+# Run native host directly (for testing)
+echo '{"id":1,"command":"health_check"}' | python native_host/host.py
+
+# Build extension
+./scripts/build.sh
+
+# Run tests
+pytest tests/
+```
 
 ### Project Structure
+
 ```
+yt-dlp-downloader/
 ├── extension/              # Firefox WebExtension (MV2)
-│   ├── background/         # Background script (native messaging)
-│   ├── content/            # Content script (video detection)
-│   ├── popup/              # Popup UI
-│   └── manifest.json
-├── native_host/
-│   ├── host.py             # Native messaging host (Python)
-│   └── com.kajusmar.ytdlp_downloader.json  # Firefox manifest
+│   ├── manifest.json
+│   ├── background/         # Service worker
+│   ├── content/           # Content scripts
+│   ├── popup/             # Popup UI (HTML/CSS/JS)
+│   └── icons/
+├── native_host/           # Python native messaging host
+│   ├── host.py
+│   └── com.kajusmar.ytdlp_downloader.json
 ├── scripts/
-│   └── install_windows.bat # Windows installer
-└── yt-dlp-downloader.xpi   # Packaged extension
+│   ├── install_windows.bat
+│   ├── install_linux.sh
+│   └── build.sh
+├── tests/
+└── dist/                  # Built .xpi files
 ```
 
-### Building
+## 📦 Building Releases
+
+GitHub Actions automatically builds `.xpi` on tag push:
+
 ```bash
-cd extension
-zip -r ../yt-dlp-downloader.xpi .
+git tag v1.0.0
+git push origin v1.0.0
 ```
 
-## How It Works
+The workflow:
+1. Runs tests
+2. Builds `.xpi` 
+3. Creates GitHub Release with artifact
 
-1. **Extension** (Firefox WebExtension) provides UI and detects videos
-2. **Native Messaging Host** (Python) communicates with extension via stdin/stdout
-3. **yt-dlp** does the actual downloading — runs as a subprocess
-4. **FFmpeg** merges video+audio streams
+## 🤝 Contributing
 
-This architecture is required because browser extensions cannot spawn processes directly.
+1. Fork the repo
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
-## Privacy
-
-- **No tracking** — no analytics, no telemetry, no external connections except to download videos
-- **No accounts** — works without login (uses cookies from your browser if available)
-- **Open source** — MIT license, fully auditable
-
-## Troubleshooting
-
-### "Native host not connected"
-- Run `scripts/install_windows.bat` again
-- Check `%APPDATA%\Mozilla\NativeMessagingHosts\com.kajusmar.ytdlp_downloader.json` exists
-- Restart Firefox completely
-
-### "yt-dlp not found"
-- Ensure `yt-dlp` is in your PATH: `yt-dlp --version`
-- Or install: `pip install -U yt-dlp`
-
-### Downloads fail / no ffmpeg
-- Install FFmpeg and add to PATH
-- Without FFmpeg, yt-dlp can't merge separate video/audio streams
-
-### Extension doesn't detect videos
-- Some sites load videos dynamically — click "Scan Again" in popup
-- Try the Manual URL tab with the direct video URL
-
-## License
+## 📄 License
 
 MIT License — see [LICENSE](LICENSE) for details.
 
-## Credits
+## 🙏 Credits
 
-- **yt-dlp** — the amazing downloader library
-- **FFmpeg** — video/audio processing
-- **Firefox WebExtensions API** — extension platform
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp) — the incredible downloader engine
+- [ffmpeg](https://ffmpeg.org/) — media processing
+- [Firefox WebExtensions API](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
 
----
+## ⚠️ Disclaimer
 
-**Repository:** https://github.com/KajusMar/yt-dlp-downloader
+This tool is for **personal use only**. Respect copyright and Terms of Service of video platforms. The authors are not responsible for misuse.
