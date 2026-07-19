@@ -116,23 +116,21 @@ function setStatus(type, text) {
 
 /**
  * Scan current page for videos
+ * Reads directly from the content script on the page.
  */
 async function scanPage() {
   if (!ytDlpAvailable || !currentTabId) {
     renderDetectedVideos([]);
     return;
   }
-  
+
   try {
-    // Ask content script to scan
-    await browser.tabs.sendMessage(currentTabId, { type: 'SCAN_VIDEOS' });
-    
-    // Get detected videos from background
-    const response = await browser.runtime.sendMessage({ type: 'GET_DETECTED_VIDEOS' });
-    detectedVideos = response.videos || [];
+    // Ask content script to scan, then return the detected list directly
+    const response = await browser.tabs.sendMessage(currentTabId, { type: 'SCAN_AND_GET' });
+    detectedVideos = (response && response.videos) || [];
     renderDetectedVideos(detectedVideos);
   } catch (e) {
-    // Content script might not be ready
+    console.warn('[yt-dlp] scanPage failed:', e);
     detectedVideos = [];
     renderDetectedVideos([]);
   }

@@ -245,7 +245,13 @@ class NativeHost:
             self.send_response(request_id, error=str(e))
     
     def handle_download(self, request_id, url, options):
-        """Start download in a background thread"""
+        """Acknowledge immediately, then run download in a background thread"""
+        # Immediate ack so the extension can register/show this download by requestId
+        self.send_response(request_id, result={
+            'status': 'started',
+            'requestId': request_id,
+            'message': 'Download started'
+        })
         thread = threading.Thread(
             target=self.run_download,
             args=(request_id, url, options),

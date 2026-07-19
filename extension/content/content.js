@@ -364,7 +364,12 @@
     if (isVideoUrl(window.location.href)) {
       const key = 'page:' + window.location.href;
       if (!detectedVideos.has(key)) {
-        detectedVideos.set(key, { url: window.location.href, source: 'page_url' });
+        detectedVideos.set(key, {
+          url: window.location.href,
+          source: 'page_url',
+          title: document.title || window.location.href,
+          thumbnail: ''
+        });
       }
     }
     
@@ -448,14 +453,43 @@
     // Cleanup
     window.addEventListener('beforeunload', cleanup);
     
-    // Listen for messages from popup/background
-    if (typeof browser !== 'undefined' && browser.runtime) {
-      browser.runtime.onMessage.addListener((message) => {
-        if (message.type === 'SCAN_VIDEOS') {
-          scanPage();
-        }
-      });
+  /**
+   * Scan page for videos and return a serializable list
+   */
+  function scanAndGet() {
+    try {
+      scanPage();
+    } catch (e) {
+      console.error('[yt-dlp] scanPage error', e);
     }
+    const list = Array.from(detectedVideos.values()).map(v => ({
+      url: v.url,
+      title: v.title || v.url,
+      source: v.source || '',
+      thumbnail: v.thumbnail || ''
+    }));
+    return list;
+  }
+
+  // Listen for messages from popup/background
+  if (typeof browser !== 'undefined' && browser.runtime) {
+    browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message.type === 'SCAN_VIDEOS') {
+        try { scanPage(); } catch (e) {}
+        return;
+      }
+      if (message.type === 'SCAN_AND_GET') {
+        const list = scanAndGet();
+        if (sendResponse) sendResponse({ videos: list });
+        return true;
+      }
+      if (message.type === 'GET_DETECTED') {
+        const list = scanAndGet();
+        if (sendResponse) sendResponse({ videos: list });
+        return true;
+      }
+    });
+  }
     
     // Expose API for popup
     window.ytdlpDetector = {

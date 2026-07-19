@@ -1,7 +1,7 @@
 {
   "name": "com.kajusmar.ytdlp_downloader",
   "description": "yt-dlp Video Downloader Native Host",
-  "path": "host.py",
+  "path": "host.bat",
   "type": "stdio",
   "allowed_extensions": [
     "yt-dlp-downloader@kajusmar.com"

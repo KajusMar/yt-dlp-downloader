@@ -44,6 +44,11 @@
     "notifications",
     "<all_urls>"
   ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "yt-dlp-downloader@kajusmar.com"
+    }
+  },
   "optional_permissions": [
     "webNavigation"
   ],

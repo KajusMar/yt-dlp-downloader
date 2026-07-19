@@ -20,25 +20,28 @@ const detectedVideos = new Map();
 function connectNativeHost() {
   try {
     nativePort = browser.runtime.connectNative(NATIVE_HOST_NAME);
-    
+
     nativePort.onMessage.addListener(handleNativeMessage);
-    
+
     nativePort.onDisconnect.addListener(() => {
-      console.log('[yt-dlp] Native host disconnected:', browser.runtime.lastError?.message);
+      const err = browser.runtime.lastError?.message || 'disconnected';
+      console.log('[yt-dlp] Native host disconnected:', err);
       nativePort = null;
-      
+
       // Reject pending requests
-      for (const [id, { reject }] of pendingRequests) {
-        reject(new Error('Native host disconnected'));
+      for (const [, { reject }] of pendingRequests) {
+        reject(new Error('Native host disconnected: ' + err));
       }
       pendingRequests.clear();
-      
-      // Try reconnecting after 2 seconds
-      setTimeout(connectNativeHost, 2000);
+
+      // Try reconnecting after 3 seconds
+      setTimeout(connectNativeHost, 3000);
     });
   } catch (e) {
     console.error('[yt-dlp] Failed to connect to native host:', e);
     nativePort = null;
+    // Retry later
+    setTimeout(connectNativeHost, 3000);
   }
 }
 
@@ -49,29 +52,33 @@ function sendToNative(message) {
   return new Promise((resolve, reject) => {
     if (!nativePort) {
       connectNativeHost();
-      // Wait for connection
-      setTimeout(() => {
-        if (!nativePort) {
-          reject(new Error('Native host not available. Is the host installed?'));
-          return;
+      // Wait for connection to come up
+      let waited = 0;
+      const poll = setInterval(() => {
+        waited += 100;
+        if (nativePort) {
+          clearInterval(poll);
+          sendToNative(message).then(resolve).catch(reject);
+        } else if (waited >= 3000) {
+          clearInterval(poll);
+          reject(new Error('Native host not available. Run install_windows.bat to register it.'));
         }
-        sendToNative(message).then(resolve).catch(reject);
-      }, 500);
+      }, 100);
       return;
     }
-    
+
     const id = ++messageId;
     pendingRequests.set(id, { resolve, reject });
-    
+
     nativePort.postMessage({ id, ...message });
-    
-    // Timeout after 60 seconds
+
+    // Timeout after 5 minutes (large downloads)
     setTimeout(() => {
       if (pendingRequests.has(id)) {
         pendingRequests.delete(id);
         reject(new Error('Request timeout'));
       }
-    }, 60000);
+    }, 300000);
   });
 }
 
@@ -80,18 +87,18 @@ function sendToNative(message) {
  */
 function handleNativeMessage(response) {
   const { id, result, error, progress } = response;
-  
+
   // Handle progress updates
   if (progress !== undefined) {
     broadcastProgress(id, progress);
     return;
   }
-  
+
   const pending = pendingRequests.get(id);
   if (!pending) return;
-  
+
   pendingRequests.delete(id);
-  
+
   if (error) {
     pending.reject(new Error(error));
   } else {
@@ -148,10 +155,72 @@ async function openDownloadFolder(dir = '') {
 }
 
 /**
+ * Message handler (returns a value or Promise for async responses)
+ */
+async function handleMessage(message, sender) {
+  switch (message.type) {
+    case 'CHECK_HEALTH':
+      try {
+        const data = await checkHealth();
+        return { success: true, data };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+
+    case 'GET_VIDEO_INFO':
+      try {
+        const data = await getVideoInfo(message.payload.url);
+        return { success: true, data };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+
+    case 'DOWNLOAD_VIDEO': {
+      try {
+        const data = await downloadVideo(message.payload.url, message.payload.options || {});
+        return { success: true, data };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+    }
+
+    case 'OPEN_DOWNLOAD_FOLDER':
+      try {
+        await openDownloadFolder(message.payload?.dir);
+        return { success: true };
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+
+    case 'REGISTER_VIDEO':
+      if (sender.tab?.id) {
+        if (!detectedVideos.has(sender.tab.id)) {
+          detectedVideos.set(sender.tab.id, []);
+        }
+        detectedVideos.get(sender.tab.id).push(message.payload);
+      }
+      return { success: true };
+
+    case 'GET_DETECTED_VIDEOS': {
+      const videos = detectedVideos.get(sender.tab?.id) || [];
+      return { videos };
+    }
+
+    case 'CLEAR_DETECTED_VIDEOS':
+      if (sender.tab?.id) {
+        detectedVideos.delete(sender.tab.id);
+      }
+      return { success: true };
+  }
+
+  return false;
+}
+
+/**
  * Handle messages from content scripts / popup
  */
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  const handled = handleMessage(message, sender, sendResponse);
+  const handled = handleMessage(message, sender);
   if (handled instanceof Promise) {
     handled.then(sendResponse).catch(e => sendResponse({ success: false, error: e.message }));
     return true;
@@ -159,79 +228,44 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   return handled;
 });
 
-async function handleMessage(message, sender, sendResponse) {
-  switch (message.type) {
-    case 'CHECK_HEALTH':
-      return checkHealth();
-    
-    case 'GET_VIDEO_INFO':
-      return getVideoInfo(message.payload.url);
-    
-    case 'DOWNLOAD_VIDEO':
-      return downloadVideo(message.payload.url, message.payload.options || {});
-    
-    case 'OPEN_DOWNLOAD_FOLDER':
-      return openDownloadFolder(message.payload?.dir);
-    
-    case 'REGISTER_VIDEO':
-      // Content script found a video
-      if (sender.tab?.id) {
-        if (!detectedVideos.has(sender.tab.id)) {
-          detectedVideos.set(sender.tab.id, []);
-        }
-        detectedVideos.get(sender.tab.id).push(message.payload);
-      }
-      break;
-    
-    case 'GET_DETECTED_VIDEOS':
-      const videos = detectedVideos.get(sender.tab?.id) || [];
-      sendResponse({ videos });
-      return true;
-    
-    case 'CLEAR_DETECTED_VIDEOS':
-      if (sender.tab?.id) {
-        detectedVideos.delete(sender.tab.id);
-      }
-      break;
-  }
-  
-  return false;
-}
-
 /**
  * Create context menus
  */
 async function createContextMenus() {
-  await browser.contextMenus.removeAll();
-  
-  browser.contextMenus.create({
-    id: 'ytdlp-download-video',
-    title: 'Download video with yt-dlp',
-    contexts: ['link', 'video', 'audio', 'page'],
-    documentUrlPatterns: ['<all_urls>']
-  });
-  
-  browser.contextMenus.create({
-    id: 'ytdlp-download-audio',
-    title: 'Download audio only (MP3)',
-    contexts: ['link', 'video', 'audio', 'page'],
-    documentUrlPatterns: ['<all_urls>']
-  });
-  
-  browser.contextMenus.create({
-    id: 'ytdlp-download-best',
-    title: 'Download best quality',
-    contexts: ['link', 'video', 'audio', 'page'],
-    documentUrlPatterns: ['<all_urls>']
-  });
+  try {
+    await browser.contextMenus.removeAll();
+
+    browser.contextMenus.create({
+      id: 'ytdlp-download-video',
+      title: 'Download video with yt-dlp',
+      contexts: ['link', 'video', 'audio', 'page'],
+      documentUrlPatterns: ['<all_urls>']
+    });
+
+    browser.contextMenus.create({
+      id: 'ytdlp-download-audio',
+      title: 'Download audio only (MP3)',
+      contexts: ['link', 'video', 'audio', 'page'],
+      documentUrlPatterns: ['<all_urls>']
+    });
+
+    browser.contextMenus.create({
+      id: 'ytdlp-download-best',
+      title: 'Download best quality',
+      contexts: ['link', 'video', 'audio', 'page'],
+      documentUrlPatterns: ['<all_urls>']
+    });
+  } catch (e) {
+    console.error('[yt-dlp] Failed to create context menus:', e);
+  }
 }
 
 browser.contextMenus.onClicked.addListener(async (info, tab) => {
   const url = info.linkUrl || info.pageUrl || info.srcUrl;
   if (!url) return;
-  
+
   let options = { format: 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' };
-  
+
   switch (info.menuItemId) {
     case 'ytdlp-download-audio':
       options = { format: 'bestaudio', extractAudio: true, audioFormat: 'mp3' };
@@ -240,7 +274,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
       options = { format: 'bestvideo+bestaudio/best' };
       break;
   }
-  
+
   try {
     await downloadVideo(url, options);
     showNotification('Download started', 'Check your downloads folder');
