@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yt-dlp Video Downloader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </div>
+      <h1>yt-dlp Downloader</h1>
+    </header>
+
+    <div id="status" class="status checking">
+      <span class="status-dot"></span>
+      <span id="statusText">Checking yt-dlp...</span>
+    </div>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="detect">Detected</button>
+      <button class="tab-btn" data-tab="manual">Manual URL</button>
+      <button class="tab-btn" data-tab="downloads">Downloads</button>
+    </nav>
+
+    <!-- Detected Videos Tab -->
+    <div id="tab-detect" class="tab-panel active">
+      <div class="section">
+        <div class="section-title">Videos on this page</div>
+        <div id="detectedVideos" class="videos-list"></div>
+        <div id="emptyDetected" class="empty-state" style="display: none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+            <path d="M12 1v3m0 16v3m-9-9h18"/>
+          </svg>
+          <p>No videos detected on this page</p>
+          <button id="scanBtn" class="btn btn-secondary btn-small">Scan Again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manual URL Tab -->
+    <div id="tab-manual" class="tab-panel">
+      <div class="section">
+        <div class="section-title">Paste any video URL</div>
+        <div class="url-input-group">
+          <input type="text" id="manualUrl" class="url-input" placeholder="https://youtube.com/watch?v=... or any supported site">
+          <button id="fetchInfoBtn" class="btn btn-secondary btn-small">Get Info</button>
+        </div>
+        <div id="manualVideoInfo" class="video-info hidden"></div>
+        <div class="format-select-group" id="formatGroup" style="display: none;">
+          <select id="manualFormat" class="format-select">
+            <option value="best">Best quality (up to 1080p)</option>
+            <option value="bestvideo+bestaudio/best">Best available (any quality)</option>
+            <option value="720p">720p</option>
+            <option value="480p">480p</option>
+            <option value="audio">Audio only (MP3)</option>
+          </select>
+          <button id="manualDownloadBtn" class="btn btn-primary" disabled style="width: 100%; margin-top: 8px;">Download</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Downloads Tab -->
+    <div id="tab-downloads" class="tab-panel">
+      <div class="section">
+        <div class="section-title">Active downloads</div>
+        <div id="downloadsList" class="downloads-list"></div>
+        <div id="emptyDownloads" class="empty-state" style="display: none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <p>No active downloads</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <button id="openFolderBtn" class="btn btn-secondary" style="flex: 1;">Open Folder</button>
+      <button id="optionsBtn" class="btn btn-secondary" style="flex: 1;">Options</button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

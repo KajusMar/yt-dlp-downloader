@@ -1,0 +1,65 @@
+{
+  "manifest_version": 2,
+  "name": "yt-dlp Video Downloader",
+  "version": "1.0.0",
+  "description": "Download videos from YouTube and 1000+ sites using yt-dlp. No quality limits, no ads, open source.",
+  "author": "Kay",
+  "homepage_url": "https://github.com/KajusMar/yt-dlp-downloader",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "64": "icons/icon64.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "scripts": ["background/background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "yt-dlp Video Downloader",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "64": "icons/icon64.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  },
+  "permissions": [
+    "nativeMessaging",
+    "activeTab",
+    "tabs",
+    "downloads",
+    "storage",
+    "contextMenus",
+    "notifications",
+    "<all_urls>"
+  ],
+  "optional_permissions": [
+    "webNavigation"
+  ],
+  "commands": {
+    "download-video": {
+      "suggested_key": {
+        "default": "Alt+D"
+      },
+      "description": "Download video from current page"
+    }
+  },
+  "web_accessible_resources": [
+    "icons/*.png"
+  ]
+}
