@@ -33,7 +33,10 @@
     <!-- Detected Videos Tab -->
     <div id="tab-detect" class="tab-panel active">
       <div class="section">
-        <div class="section-title">Videos on this page</div>
+        <div class="section-title">
+          Videos on this page
+          <button id="scanBtnHeader" class="btn btn-secondary btn-small" style="float: right; margin-top: -2px;">Scan Again</button>
+        </div>
         <div id="detectedVideos" class="videos-list"></div>
         <div id="emptyDetected" class="empty-state" style="display: none;">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -41,7 +44,7 @@
             <circle cx="12" cy="13" r="4"/>
             <path d="M12 1v3m0 16v3m-9-9h18"/>
           </svg>
-          <p>No videos detected on this page</p>
+          <p id="emptyMsg">No videos detected on this page</p>
           <button id="scanBtn" class="btn btn-secondary btn-small">Scan Again</button>
         </div>
       </div>

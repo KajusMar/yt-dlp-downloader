@@ -62,7 +62,10 @@ function setupEventListeners() {
   document.getElementById('fetchInfoBtn').addEventListener('click', fetchManualVideoInfo);
   document.getElementById('manualDownloadBtn').addEventListener('click', downloadManualVideo);
   document.getElementById('scanBtn').addEventListener('click', scanPage);
-  
+  // Header Scan Again is always visible (the empty-state one only shows when no videos)
+  const scanHeader = document.getElementById('scanBtnHeader');
+  if (scanHeader) scanHeader.addEventListener('click', scanPage);
+
   // Footer buttons
   document.getElementById('openFolderBtn').addEventListener('click', openDownloadFolder);
   document.getElementById('optionsBtn').addEventListener('click', openOptions);
@@ -119,22 +122,24 @@ function setStatus(type, text) {
  * Reads directly from the content script on the page.
  */
 async function scanPage() {
-  // Detection does NOT require the native host — only downloading does.
-  // Always try to read videos the content script found on the page.
   if (!currentTabId) {
     renderDetectedVideos([]);
     return;
   }
 
+  // Visual feedback: disable + label both Scan Again buttons while scanning
+  const scanBtns = [
+    document.getElementById('scanBtn'),
+    document.getElementById('scanBtnHeader')
+  ].filter(Boolean);
+  scanBtns.forEach(b => { b.disabled = true; b.textContent = 'Scanning…'; });
+
   try {
-    // Ask content script to scan, then return the detected list directly
     const response = await browser.tabs.sendMessage(currentTabId, { type: 'SCAN_AND_GET' });
     detectedVideos = (response && response.videos) || [];
     renderDetectedVideos(detectedVideos);
   } catch (e) {
     console.warn('[yt-dlp] scanPage failed:', e);
-    // Fallback: if the content script isn't reachable (e.g. it hasn't been
-    // injected yet), at least offer the current tab URL if it's a video site.
     try {
       const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
       if (tab && tab.url && /youtube\.com|youtu\.be|vimeo\.com|twitch\.tv|dailymotion\.com|tiktok\.com|soundcloud\.com|bilibili\.com|rumble\.com|twitter\.com|x\.com|reddit\.com|facebook\.com|instagram\.com/i.test(tab.url)) {
@@ -146,6 +151,13 @@ async function scanPage() {
       detectedVideos = [];
     }
     renderDetectedVideos(detectedVideos);
+  } finally {
+    scanBtns.forEach(b => { b.disabled = false; b.textContent = 'Scan Again'; });
+    // Update empty-state copy so a no-result scan is clearly communicated
+    const emptyMsg = document.getElementById('emptyMsg');
+    if (emptyMsg && detectedVideos.length === 0) {
+      emptyMsg.textContent = 'No videos found. Try refreshing the page, or use the Manual URL tab.';
+    }
   }
 }
 
