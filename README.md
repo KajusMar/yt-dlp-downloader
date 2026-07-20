@@ -23,7 +23,19 @@
 
 ## 🚀 Quick Install
 
-### Option 1: One-click (Recommended)
+### Option 1: One-click Auto-Install (Recommended, Windows)
+
+[![Install from GitHub Releases](https://img.shields.io/badge/📥_Install-Latest_Release-orange?style=for-the-badge&logo=github)](https://github.com/KajusMar/yt-dlp-downloader/releases/latest)
+
+1. Click the button above → download **`yt-dlp-downloader-windows.zip`** (not just the `.xpi`)
+2. Extract the zip → run **`scripts\install_windows.bat`** as Administrator
+3. Open Firefox → `about:addons` → Gear icon → **Install Add-on From File**
+4. Select the extracted `yt-dlp-downloader.xpi` → **Restart Firefox**
+5. Done! 🎉
+
+*The auto-installer registers the native host, checks/installs yt-dlp + ffmpeg, and configures everything.*
+
+### Option 2: Manual Install (Any OS)
 
 [![Install from GitHub Releases](https://img.shields.io/badge/📥_Install-Latest_Release-orange?style=for-the-badge&logo=github)](https://github.com/KajusMar/yt-dlp-downloader/releases/latest)
 
@@ -31,6 +43,8 @@
 2. Open Firefox → `about:addons` → Gear icon → **Install Add-on From File**
 3. Select the `.xpi` → **Restart Firefox**
 4. Done! 🎉
+
+*Requires yt-dlp + ffmpeg in PATH. See requirements below.*
 
 ### Option 2: From Source
 

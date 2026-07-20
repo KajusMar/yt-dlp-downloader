@@ -1,41 +1,51 @@
-# Installing yt-dlp Video Downloader (Windows + Floorp/Firefox)
+# Quick Install Guide
 
-Downloads need **two** parts: the browser extension (`.xpi`) **and** the native
-host (a small local program that runs yt-dlp). Installing only the extension will
-let it *detect* videos but **not download** them.
+## 🚀 Easiest Way (Windows)
 
-## Easiest: full bundle
+1. **Download** `yt-dlp-downloader-windows.zip` from [latest release](https://github.com/KajusMar/yt-dlp-downloader/releases/latest)
+2. **Extract** the zip file
+3. **Right-click** `scripts\install_windows.bat` → **Run as Administrator**
+4. Open Firefox → `about:addons` → Gear (⚙️) → **Install Add-on From File**
+5. Select `yt-dlp-downloader.xpi` from the extracted folder
+6. **Restart Firefox** when prompted
 
-1. Download **`yt-dlp-downloader-windows.zip`** from the
-   [latest release](https://github.com/KajusMar/yt-dlp-downloader/releases/latest).
-2. **Extract the whole zip** to a permanent folder (e.g. `C:\Tools\yt-dlp-downloader`).
-   Do **not** run the installer straight from inside the zip / Downloads — extract first.
-3. Run `scripts\install_windows.bat` (double-click). It:
-   - checks Python / yt-dlp / ffmpeg,
-   - registers the native host in the registry
-     (`HKCU\Software\Mozilla\NativeMessagingHosts`),
-   - points it at the bundled `native_host\host.exe`.
-4. In Floorp/Firefox, open `about:addons` → gear → **Install Add-on From File** →
-   pick `yt-dlp-downloader.xpi` (or drag it onto the page).
-5. **Restart Floorp/Firefox.**
-6. Click the extension icon → it should show `yt-dlp <version> • ffmpeg`.
+✅ Done! The auto-installer:
+- Registers the native messaging host with Firefox
+- Checks/installs `yt-dlp` and `ffmpeg` via winget
+- Configures all permissions
 
-## Requirements
+---
 
-- **Python 3.9+** on PATH (the host launches `python -m yt_dlp`). If you use the
-  bundled `host.exe`, it still calls your system Python for yt-dlp, so Python +
-  yt-dlp must be installed.
-- **ffmpeg** on PATH (for merging video+audio and MP3 extraction).
+## 📋 Manual Install (Any OS)
 
-## Troubleshooting
+1. Download `yt-dlp-downloader.xpi` from [latest release](https://github.com/KajusMar/yt-dlp-downloader/releases/latest)
+2. Open Firefox → `about:addons` → Gear (⚙️) → **Install Add-on From File**
+3. Select the `.xpi` file
+4. **Restart Firefox**
 
-- **"Not connected" in the popup** → the native host isn't registered. Re-run
-  `scripts\install_windows.bat` from the *extracted* folder, then restart the browser.
-- **Detects videos but download does nothing** → same cause: native host missing
-  or the manifest path is wrong. Re-run the installer.
-- **Moved the folder?** The registry points at the old `host.exe` path. Re-run the
-  installer from the new location.
+**Requirements** (manual install only): `yt-dlp` + `ffmpeg` must be in your PATH
+- Windows: `winget install yt-dlp ffmpeg`
+- macOS: `brew install yt-dlp ffmpeg`
+- Linux: `sudo apt install yt-dlp ffmpeg`
 
-## Uninstall
+---
 
-Run `scripts\uninstall_windows.bat`, then remove the extension from `about:addons`.
+## 🎮 How to Use
+
+| Action | How |
+|--------|-----|
+| **Detect videos on page** | Click extension icon → **Detected** tab |
+| **Download from URL** | Extension icon → **Manual URL** tab → paste link → **Get Info** → **Download** |
+| **Right-click any link** | Context menu → **Download with yt-dlp** |
+| **Keyboard shortcut** | `Alt+D` on any video page |
+| **Progress** | Extension popup → **Downloads** tab |
+
+---
+
+## ⚡ Quick Test
+
+After install, click the extension icon — you should see:
+- `yt-dlp 2026.07.04 • ffmpeg` (or similar)
+- "Connected" status
+
+If it says "Not connected": restart Firefox, or run the auto-installer again.
