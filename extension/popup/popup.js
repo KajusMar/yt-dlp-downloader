@@ -119,7 +119,9 @@ function setStatus(type, text) {
  * Reads directly from the content script on the page.
  */
 async function scanPage() {
-  if (!ytDlpAvailable || !currentTabId) {
+  // Detection does NOT require the native host — only downloading does.
+  // Always try to read videos the content script found on the page.
+  if (!currentTabId) {
     renderDetectedVideos([]);
     return;
   }
@@ -131,8 +133,19 @@ async function scanPage() {
     renderDetectedVideos(detectedVideos);
   } catch (e) {
     console.warn('[yt-dlp] scanPage failed:', e);
-    detectedVideos = [];
-    renderDetectedVideos([]);
+    // Fallback: if the content script isn't reachable (e.g. it hasn't been
+    // injected yet), at least offer the current tab URL if it's a video site.
+    try {
+      const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+      if (tab && tab.url && /youtube\.com|youtu\.be|vimeo\.com|twitch\.tv|dailymotion\.com|tiktok\.com|soundcloud\.com|bilibili\.com|rumble\.com|twitter\.com|x\.com|reddit\.com|facebook\.com|instagram\.com/i.test(tab.url)) {
+        detectedVideos = [{ url: tab.url, title: tab.title || tab.url, source: 'page_url', thumbnail: '' }];
+      } else {
+        detectedVideos = [];
+      }
+    } catch (_) {
+      detectedVideos = [];
+    }
+    renderDetectedVideos(detectedVideos);
   }
 }
 
@@ -271,8 +284,16 @@ async function downloadDetectedVideo(index) {
 async function downloadManualVideo() {
   const url = document.getElementById('manualUrl').value.trim();
   const format = document.getElementById('manualFormat').value;
-  
-  if (!url || !ytDlpAvailable) return;
+
+  if (!url) return;
+  if (!ytDlpAvailable) {
+    // Re-check once in case the health check ran before the host was ready.
+    await checkHealth();
+    if (!ytDlpAvailable) {
+      alert('Native host not connected. Run install_windows.bat (from the GitHub release) and restart Floorp.');
+      return;
+    }
+  }
   
   const btn = document.getElementById('manualDownloadBtn');
   btn.disabled = true;

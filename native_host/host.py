@@ -80,11 +80,12 @@ class NativeHost:
     def handle_health_check(self, request_id):
         """Check if yt-dlp is available"""
         try:
+            py = self._yt_dlp_python()
             result = subprocess.run(
-                [sys.executable, '-m', 'yt_dlp', '--version'],
+                [py, '-m', 'yt_dlp', '--version'],
                 capture_output=True,
                 text=True,
-                timeout=10
+                timeout=15
             )
             if result.returncode == 0:
                 version = result.stdout.strip()
@@ -141,21 +142,20 @@ class NativeHost:
     def _yt_dlp_python(self):
         """Find a python interpreter that actually has yt-dlp installed.
 
-        sys.executable may be a venv without yt-dlp, or -- when this script is
-        bundled as a PyInstaller .exe -- sys.executable is the .exe itself,
-        which would "accept" any args and lead to a malformed yt-dlp command.
-        So we NEVER probe sys.executable; we only probe real python launchers
-        (python, py, python3) plus the known uv interpreter path, and return
-        the first that imports yt_dlp."""
+        When bundled as a PyInstaller .exe, sys.executable IS host.exe, which
+        would 'accept' any args and produce a malformed yt-dlp command. So we
+        NEVER return our own executable; we probe real python launchers and the
+        known uv interpreter, and cache the winner."""
+        if getattr(self, '_cached_py', None):
+            return self._cached_py
         exe = os.path.realpath(sys.executable).lower()
-        candidates = []
-        for name in ('python', 'py', 'python3'):
-            candidates.append(name)
-        # Known uv-managed interpreter that has yt-dlp on this machine
+        candidates = ['python', 'py', 'python3']
         uv_py = os.path.join(os.environ.get('LOCALAPPDATA', ''),
                              'uv', 'python', 'cpython-3.11-windows-x86_64-none', 'python.exe')
-        if uv_py:
-            candidates.append(uv_py)
+        candidates.append(uv_py)
+        # Only trust sys.executable if we are NOT frozen (i.e. real python).
+        if not getattr(sys, 'frozen', False):
+            candidates.append(sys.executable)
         for cand in candidates:
             try:
                 c = os.path.realpath(cand).lower() if os.path.exists(cand) else cand.lower()
@@ -168,10 +168,12 @@ class NativeHost:
                     timeout=10
                 )
                 if r.returncode == 0:
+                    self._cached_py = cand
                     return cand
             except Exception:
                 continue
         # Last resort: plain python on PATH
+        self._cached_py = 'python'
         return 'python'
 
     def run_download(self, request_id, url, options):

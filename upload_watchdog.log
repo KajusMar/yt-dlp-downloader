@@ -545,3 +545,7 @@ ReleaseAsset.name already exists
 2026-07-20  4:19:01.43 - attempting upload 
 2026-07-20  4:19:15.24 - UPLOAD SUCCESS 
 2026-07-20  4:19:15.24 - shutting down device 
+2026-07-20 12:39:09.04 - watchdog started 
+2026-07-20 12:39:09.86 - attempting upload 
+2026-07-20 12:39:11.81 - UPLOAD SUCCESS 
+2026-07-20 12:39:11.81 - shutting down device 

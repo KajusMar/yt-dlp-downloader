@@ -59,7 +59,7 @@ function sendToNative(message) {
         if (nativePort) {
           clearInterval(poll);
           sendToNative(message).then(resolve).catch(reject);
-        } else if (waited >= 3000) {
+        } else if (waited >= 8000) {
           clearInterval(poll);
           reject(new Error('Native host not available. Run install_windows.bat to register it.'));
         }
@@ -332,4 +332,3 @@ browser.runtime.onInstalled.addListener(() => {
 
 // Connect immediately
 connectNativeHost();
-createContextMenus();
