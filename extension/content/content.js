@@ -13,45 +13,62 @@
     }
   } catch (e) {}
 
-  // Supported video hosting domains
+  // Supported video hosting domains (matched as exact host or subdomain suffix)
   const VIDEO_DOMAINS = [
-    'youtube.com',
-    'youtu.be',
+    'youtube.com', 'youtu.be',
     'vimeo.com',
     'twitch.tv',
     'dailymotion.com',
-    'facebook.com',
+    'facebook.com', 'fb.watch',
     'instagram.com',
-    'twitter.com',
-    'x.com',
-    'tiktok.com',
-    'reddit.com',
+    'twitter.com', 'x.com', 't.co',
+    'tiktok.com', 'vt.tiktok.com', 'vm.tiktok.com',
+    'reddit.com', 'redd.it',
     'soundcloud.com',
     'bandcamp.com',
-    'bilibili.com',
+    'bilibili.com', 'b23.tv',
     'nicovideo.jp',
     'rumble.com',
-    'odysee.com',
-    'lbry.tv',
+    'odysee.com', 'lbry.tv',
     'streamable.com',
     'gfycat.com',
     'imgur.com',
-    'vk.com',
-    'ok.ru'
+    'vk.com', 'vkontakte.ru', 'ok.ru',
+    'mixcloud.com',
+    'audius.co',
+    'rutube.ru',
+    'bitview.net',
+    'brandnewtube.com',
+    'bitchute.com',
+    'brighteon.com',
+    'roxytube.com',
+    'truthsocial.com',
+    'vimeo.com',
+    'archive.org',
+    'streamyme.com',
+    '9gag.com',
+    'kick.com',
+    'trovo.live',
+    'media.tenor.com', 'tenor.com',
+    'giphy.com',
+    'xiaohongshu.com', 'xhslink.com',
+    'ted.com',
+    'nytimes.com', 'washingtonpost.com', 'cnn.com', 'bbc.com', 'bbc.co.uk',
+    'vimeo.com'
   ];
-  
-  // Video element selectors
+
+  // Direct media file extensions (a raw .mp4/.webm link is always downloadable)
+  const MEDIA_EXT_RE = /\.(mp4|webm|mkv|mov|avi|flv|m4v|ogg|mp3|m4a|wav|flac|aac)(?:[?#]|$)/i;
+
+  // Video element selectors (broadened: catch any iframe with a video-like src)
   const VIDEO_SELECTORS = [
     'video',
-    'iframe[src*="youtube"]',
-    'iframe[src*="vimeo"]',
-    'iframe[src*="dailymotion"]',
-    'iframe[src*="twitch"]',
-    'iframe[src*="facebook"]',
-    'iframe[src*="instagram"]',
+    'audio',
+    'iframe[src*="youtube"], iframe[src*="youtu.be"], iframe[src*="vimeo"], iframe[src*="dailymotion"], iframe[src*="twitch"], iframe[src*="facebook"], iframe[src*="instagram"], iframe[src*="tiktok"], iframe[src*="rumble"], iframe[src*="bitchute"], iframe[src*="odysee"], iframe[src*="bilibili"], iframe[src*="streamable"]',
     'div[data-video-url]',
     '[data-video-id]',
-    'video source'
+    'video source',
+    'a[href$=".mp4"], a[href$=".webm"], a[href$=".mkv"], a[href$=".mov"], a[href$=".m4v"], a[href$=".mp3"], a[href$=".m4a"]'
   ];
   
   // State
@@ -61,29 +78,45 @@
   let scanTimeout = null;
   
   /**
-   * Check if URL is from a supported video site
+   * Check if URL is from a supported video site.
+   * Matches exact host or as a subdomain/domain suffix (e.g. "m.youtube.com"
+   * and "youtube.com" both match "youtube.com"). Avoids naive substring
+   * matching (which would wrongly match "notyoutube.com").
    */
   function isVideoUrl(url) {
     try {
-      const hostname = new URL(url).hostname.replace('www.', '');
-      return VIDEO_DOMAINS.some(domain => hostname.includes(domain));
+      const hostname = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
+      return VIDEO_DOMAINS.some(domain => {
+        domain = domain.toLowerCase();
+        return hostname === domain || hostname.endsWith('.' + domain);
+      }) || MEDIA_EXT_RE.test(url);
     } catch {
       return false;
     }
   }
   
   /**
-   * Extract video URL from element
+   * Extract video URL from element (video, audio, iframe, data-attr, or direct media link)
    */
   function getVideoUrl(element) {
     // Direct video element
     if (element.tagName === 'VIDEO') {
       return element.currentSrc || element.src;
     }
-    
-    // Iframe
+
+    // Audio element (e.g. SoundCloud embeds, direct mp3)
+    if (element.tagName === 'AUDIO') {
+      return element.currentSrc || element.src;
+    }
+
+    // Iframe (player embeds)
     if (element.tagName === 'IFRAME') {
       return element.src;
+    }
+
+    // Direct media <a> link
+    if (element.tagName === 'A' && element.href && MEDIA_EXT_RE.test(element.href)) {
+      return element.href;
     }
     
     // Data attributes

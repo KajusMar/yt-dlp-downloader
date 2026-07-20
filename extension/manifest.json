@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "yt-dlp Video Downloader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Download videos from YouTube and 1000+ sites using yt-dlp. No quality limits, no ads, open source.",
   "author": "Kay",
   "homepage_url": "https://github.com/KajusMar/yt-dlp-downloader",
@@ -14,7 +14,7 @@
   },
   "background": {
     "scripts": ["background/background.js"],
-    "persistent": false
+    "persistent": true
   },
   "content_scripts": [
     {
