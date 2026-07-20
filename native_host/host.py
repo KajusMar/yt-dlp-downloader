@@ -181,11 +181,17 @@ class NativeHost:
         try:
             # Resolve output dir: prefer explicit outputDir, else DOWNLOAD_DIR,
             # else a sane default. Guard against empty/invalid values so the
-            # file never lands in host.exe's CWD by accident.
-            output_dir = options.get('outputDir') or DOWNLOAD_DIR or os.path.join(os.path.expanduser('~'), 'Videos', 'yt-dlp')
-            output_dir = os.path.abspath(os.path.expanduser(output_dir))
+            # Videos ALWAYS save in the yt-dlp folder (~/Videos/yt-dlp).
+            # An explicit outputDir is only honored if it's a real, non-empty
+            # path; otherwise we unconditionally fall back to the yt-dlp folder
+            # so files never land in host.exe's CWD or anywhere unexpected.
+            override = options.get('outputDir')
+            if override and str(override).strip() and not str(override).strip() in ('.', '~'):
+                output_dir = os.path.abspath(os.path.expanduser(str(override).strip()))
+            else:
+                output_dir = os.path.abspath(os.path.expanduser(DOWNLOAD_DIR))
             if not output_dir or output_dir.strip() in ('', '.'):
-                output_dir = os.path.join(os.path.expanduser('~'), 'Videos', 'yt-dlp')
+                output_dir = os.path.abspath(os.path.join(os.path.expanduser('~'), 'Videos', 'yt-dlp'))
             Path(output_dir).mkdir(parents=True, exist_ok=True)
             
             # Pick a python that has yt-dlp

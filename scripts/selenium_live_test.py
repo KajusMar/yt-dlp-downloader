@@ -12,7 +12,7 @@ from selenium.webdriver.common.by import By
 PROFILE = r"C:\Users/Kay/AppData/Roaming\Floorp\Profiles\16sprtbv.default-release"
 GECKO = r"C:\Users\Kay\yt-dlp-downloader\geckodriver.exe"
 DOWNLOAD_DIR = os.path.expanduser("~/Videos/yt-dlp")
-TEST_URL = "https://youtu.be/aqz-KE-bpKQ"
+TEST_URL = "https://youtu.be/aqz-KE-bpKQ"  # known-good public video (Big Buck Bunny)
 
 opt = Options()
 opt.binary_location = r"C:\Program Files\Ablaze Floorp\floorp.exe"
@@ -50,18 +50,22 @@ print("trigger:", result)
 
 print("Watching download dir for 70s...")
 WATCH = os.path.expanduser("~/Videos/yt-dlp")
-before = set(glob.glob(os.path.join(WATCH, "*.mp3"))) | set(glob.glob(os.path.join(os.path.expanduser("~/yt-dlp-downloader/native_host"), "*.mp3")))
+NATIVE = os.path.expanduser("~/yt-dlp-downloader/native_host")
 done = False
 for i in range(14):
     time.sleep(5)
-    now = set(glob.glob(os.path.join(WATCH, "*.mp3"))) | set(glob.glob(os.path.join(os.path.expanduser("~/yt-dlp-downloader/native_host"), "*.mp3")))
-    new = now - before
-    if new:
-        f = max(new, key=os.path.getsize)
+    files = glob.glob(os.path.join(WATCH, "*.mp3")) + glob.glob(os.path.join(NATIVE, "*.mp3"))
+    # The target file should be in WATCH and NOT in NATIVE
+    in_watch = [f for f in glob.glob(os.path.join(WATCH, "*aqz-KE-bpKQ*"))]
+    in_native = [f for f in glob.glob(os.path.join(NATIVE, "*aqz-KE-bpKQ*"))]
+    if in_watch:
+        f = max(in_watch, key=os.path.getsize)
         sz = os.path.getsize(f)
-        print(f"t={(i+1)*5}s -> {os.path.basename(f)} {sz} bytes {'DONE' if sz>9_000_000 else 'downloading'}")
-        if sz > 9_000_000:
+        print(f"t={(i+1)*5}s -> {os.path.basename(f)} {sz} bytes {'DONE' if sz>1_000_000 else 'downloading'}")
+        if sz > 1_000_000:
             done = True; break
+    elif in_native:
+        print(f"t={(i+1)*5}s -> STRAY in native_host! {os.path.getsize(in_native[0])} bytes")
     else:
         print(f"t={(i+1)*5}s -> no file yet")
 driver.quit()
