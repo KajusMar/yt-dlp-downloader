@@ -388,6 +388,14 @@ def main():
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
     
+    # Diagnostic marker: proves Firefox spawned this host
+    try:
+        with open(r'C:\Users\Kay\yt-dlp-downloader\host_spawned.log', 'a') as f:
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} host.exe launched by browser\n")
+            f.flush()
+    except Exception:
+        pass
+    
     host = NativeHost()
     host.run()
 

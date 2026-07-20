@@ -115,10 +115,13 @@ if %errorlevel% neq 0 (
 REM === CRITICAL (Windows) ===
 REM On Windows, Firefox/Floorp does NOT scan the NativeMessagingHosts folder.
 REM It reads the REGISTRY: HKCU\Software\Mozilla\NativeMessagingHosts\<name> = <manifest path>
+REM IMPORTANT: the host name must be a SUBKEY whose DEFAULT value = manifest path.
+REM A flat value (New-ItemProperty) is IGNORED by Firefox -> "Not connected".
 REM (Hardcoded "Software\Mozilla" in modules\NativeManifests.sys.mjs, even on Floorp.)
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "New-Item -Path 'HKCU:\Software\Mozilla\NativeMessagingHosts' -Force | Out-Null;" ^
-  "New-ItemProperty -Path 'HKCU:\Software\Mozilla\NativeMessagingHosts' -Name 'com.kajusmar.ytdlp_downloader' -Value $env:MANIFEST_DST_ENV -PropertyType String -Force | Out-Null;" ^
+  "New-Item -Path 'HKCU:\Software\Mozilla\NativeMessagingHosts\com.kajusmar.ytdlp_downloader' -Force | Out-Null;" ^
+  "Set-ItemProperty -Path 'HKCU:\Software\Mozilla\NativeMessagingHosts\com.kajusmar.ytdlp_downloader' -Name '(default)' -Value $env:MANIFEST_DST_ENV -Force | Out-Null;" ^
   "Write-Host ('Registry set: HKCU\Software\Mozilla\NativeMessagingHosts\com.kajusmar.ytdlp_downloader = ' + $env:MANIFEST_DST_ENV)"
 if %errorlevel% neq 0 (
     echo ERROR: Failed to write registry key
