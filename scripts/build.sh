@@ -23,38 +23,11 @@ fi
 VERSION=$(grep '"version"' "$EXT_DIR/manifest.json" | sed -E 's/.*"version": "([^"]+)".*/\1/')
 echo "📦 Version: $VERSION"
 
-# Create .xpi - use PowerShell on Windows, zip on Unix
-if command -v zip >/dev/null 2>&1; then
-    # Unix/Linux/macOS with zip
-    cd "$EXT_DIR"
-    zip -r "../$DIST_DIR/$XPI_NAME" . \
-        -x "*.DS_Store" \
-        -x "*/\.*" \
-        -x "*.map" \
-        -x "*.ts" \
-        -x "*.md" \
-        -x "node_modules/*" \
-        -x "*.test.*" \
-        -x "*.spec.*"
-    cd ..
-elif command -v powershell >/dev/null 2>&1 || command -v pwsh >/dev/null 2>&1; then
-    # Windows with PowerShell
-    PS_CMD="powershell"
-    command -v pwsh >/dev/null 2>&1 && PS_CMD="pwsh"
-    
-    $PS_CMD -NoProfile -Command "
-        Add-Type -AssemblyName System.IO.Compression.FileSystem
-        [System.IO.Compression.ZipFile]::CreateFromDirectory(
-            '$(pwd -W)/extension',
-            '$(pwd -W)/dist/$XPI_NAME',
-            [System.IO.Compression.CompressionLevel]::Optimal,
-            \$false
-        )
-    "
-else
-    echo "❌ Neither 'zip' nor 'powershell' found. Cannot create .xpi"
-    exit 1
-fi
+# Build the .xpi with Python's zipfile (Firefox-compatible nested paths).
+# We deliberately avoid PowerShell Compress-Archive: it emits ZIP entries that
+# Firefox's strict JAR reader sometimes fails to serve (manifest.json loads but
+# subfolder files like popup/popup.html 404). See scripts/build_xpi.py.
+python3 scripts/build_xpi.py 2>/dev/null || python scripts/build_xpi.py
 
 # Verify
 if [ -f "$DIST_DIR/$XPI_NAME" ]; then

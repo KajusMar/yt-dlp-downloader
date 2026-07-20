@@ -1,0 +1,547 @@
+2026-07-20  3:14:19.32 - watchdog started 
+2026-07-20  3:14:20.25 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:14:53.84 - upload failed, retry in 60s 
+2026-07-20  3:14:58.40 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482849704)
+2026-07-20  3:15:10.00 - upload failed, retry in 60s 
+2026-07-20  3:15:10.84 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:15:48.18 - upload failed, retry in 60s 
+2026-07-20  3:15:48.20 - attempting upload 
+2026-07-20  3:15:48.21 - UPLOAD SUCCESS 
+2026-07-20  3:15:48.21 - shutting down device 
+2026-07-20  3:15:56.65 - watchdog started 
+2026-07-20  3:15:57.47 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482850329)
+2026-07-20  3:16:00.45 - upload failed, retry in 60s 
+2026-07-20  3:16:01.13 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:16:34.71 - upload failed, retry in 60s 
+2026-07-20  3:16:37.57 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:16:40.59 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:17:17.16 - upload failed, retry in 60s 
+2026-07-20  3:17:21.62 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:17:52.92 - upload failed, retry in 60s 
+2026-07-20  3:17:53.92 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:18:27.22 - upload failed, retry in 60s 
+2026-07-20  3:18:37.52 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482853115)
+2026-07-20  3:18:40.74 - upload failed, retry in 60s 
+2026-07-20  3:18:41.42 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:19:21.62 - upload failed, retry in 60s 
+2026-07-20  3:19:22.66 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482853440)
+2026-07-20  3:19:25.85 - upload failed, retry in 60s 
+2026-07-20  3:19:26.68 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482853440)
+2026-07-20  3:19:29.83 - upload failed, retry in 60s 
+2026-07-20  3:19:30.64 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482853440)
+2026-07-20  3:19:33.53 - upload failed, retry in 60s 
+2026-07-20  3:19:34.36 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482853621)
+2026-07-20  3:19:37.22 - upload failed, retry in 60s 
+2026-07-20  3:19:37.89 - attempting upload 
+HTTP 404: Not Found (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482853440)
+2026-07-20  3:19:43.71 - upload failed, retry in 60s 
+2026-07-20  3:19:46.58 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:19:51.62 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:20:28.00 - upload failed, retry in 60s 
+2026-07-20  3:20:28.81 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:20:59.20 - upload failed, retry in 60s 
+2026-07-20  3:21:02.12 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:21:06.16 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482854933)
+2026-07-20  3:21:09.38 - upload failed, retry in 60s 
+2026-07-20  3:21:10.02 - attempting upload 
+release not found
+2026-07-20  3:21:12.53 - upload failed, retry in 60s 
+2026-07-20  3:21:15.22 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:21:18.31 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482855464)
+2026-07-20  3:21:29.44 - upload failed, retry in 60s 
+2026-07-20  3:21:30.22 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482854933)
+2026-07-20  3:21:33.22 - upload failed, retry in 60s 
+2026-07-20  3:21:33.87 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482854933)
+2026-07-20  3:21:36.90 - upload failed, retry in 60s 
+2026-07-20  3:22:08.79 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:22:17.86 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:22:50.49 - upload failed, retry in 60s 
+2026-07-20  3:22:59.64 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:23:34.13 - upload failed, retry in 60s 
+2026-07-20  3:23:34.89 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:24:07.71 - upload failed, retry in 60s 
+2026-07-20  3:24:08.47 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:24:43.10 - upload failed, retry in 60s 
+2026-07-20  3:24:49.91 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:25:23.36 - upload failed, retry in 60s 
+2026-07-20  3:25:24.52 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:25:53.89 - upload failed, retry in 60s 
+2026-07-20  3:25:54.69 - attempting upload 
+HTTP 502: Error updating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:26:33.77 - upload failed, retry in 60s 
+2026-07-20  3:26:34.54 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482859627)
+2026-07-20  3:26:37.57 - upload failed, retry in 60s 
+2026-07-20  3:26:38.20 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482859627)
+2026-07-20  3:26:41.20 - upload failed, retry in 60s 
+2026-07-20  3:26:45.91 - attempting upload 
+release not found
+2026-07-20  3:26:48.56 - upload failed, retry in 60s 
+2026-07-20  3:26:49.19 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482859627)
+2026-07-20  3:26:52.20 - upload failed, retry in 60s 
+2026-07-20  3:26:53.00 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482859627)
+2026-07-20  3:26:55.78 - upload failed, retry in 60s 
+2026-07-20  3:26:56.46 - attempting upload 
+release not found
+2026-07-20  3:26:58.99 - upload failed, retry in 60s 
+2026-07-20  3:27:01.65 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:27:08.31 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:27:40.48 - upload failed, retry in 60s 
+2026-07-20  3:27:41.40 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:28:14.62 - upload failed, retry in 60s 
+2026-07-20  3:28:17.29 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:28:22.90 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:28:54.36 - upload failed, retry in 60s 
+2026-07-20  3:28:57.06 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:29:00.35 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:29:31.90 - upload failed, retry in 60s 
+2026-07-20  3:29:36.94 - attempting upload 
+release not found
+2026-07-20  3:29:39.62 - upload failed, retry in 60s 
+2026-07-20  3:29:42.19 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:29:47.20 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:30:15.90 - upload failed, retry in 60s 
+2026-07-20  3:30:16.73 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:30:50.18 - upload failed, retry in 60s 
+2026-07-20  3:30:50.98 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:31:28.40 - upload failed, retry in 60s 
+2026-07-20  3:31:29.38 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:32:04.52 - upload failed, retry in 60s 
+2026-07-20  3:32:05.49 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482864738)
+2026-07-20  3:32:08.32 - upload failed, retry in 60s 
+2026-07-20  3:32:09.15 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:32:44.53 - upload failed, retry in 60s 
+2026-07-20  3:32:47.21 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:32:50.20 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:33:22.70 - upload failed, retry in 60s 
+2026-07-20  3:33:23.44 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:33:56.21 - upload failed, retry in 60s 
+2026-07-20  3:33:58.83 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:34:03.23 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:34:35.75 - upload failed, retry in 60s 
+2026-07-20  3:34:36.52 - attempting upload 
+release not found
+2026-07-20  3:34:39.00 - upload failed, retry in 60s 
+2026-07-20  3:34:43.35 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:35:13.72 - upload failed, retry in 60s 
+2026-07-20  3:35:14.67 - attempting upload 
+release not found
+2026-07-20  3:35:17.32 - upload failed, retry in 60s 
+2026-07-20  3:35:23.10 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:35:56.74 - upload failed, retry in 60s 
+2026-07-20  3:35:59.66 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:36:04.98 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:36:36.38 - upload failed, retry in 60s 
+2026-07-20  3:36:39.22 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:36:41.97 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:37:15.69 - upload failed, retry in 60s 
+2026-07-20  3:37:16.48 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:37:46.80 - upload failed, retry in 60s 
+2026-07-20  3:37:47.80 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:38:21.01 - upload failed, retry in 60s 
+2026-07-20  3:38:28.53 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:39:01.19 - upload failed, retry in 60s 
+2026-07-20  3:39:01.96 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:39:30.22 - upload failed, retry in 60s 
+2026-07-20  3:39:31.00 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:40:04.43 - upload failed, retry in 60s 
+2026-07-20  3:40:09.22 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482872082)
+2026-07-20  3:40:17.82 - upload failed, retry in 60s 
+2026-07-20  3:40:18.77 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:40:50.19 - upload failed, retry in 60s 
+2026-07-20  3:40:52.17 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:41:31.35 - upload failed, retry in 60s 
+2026-07-20  3:41:39.14 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:42:11.64 - upload failed, retry in 60s 
+2026-07-20  3:42:14.52 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:42:18.76 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:42:48.34 - upload failed, retry in 60s 
+2026-07-20  3:42:49.38 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:43:21.80 - upload failed, retry in 60s 
+2026-07-20  3:43:22.59 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:43:53.81 - upload failed, retry in 60s 
+2026-07-20  3:43:56.48 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:43:59.35 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:44:36.15 - upload failed, retry in 60s 
+2026-07-20  3:44:36.94 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:45:21.93 - upload failed, retry in 60s 
+2026-07-20  3:45:22.99 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:45:56.48 - upload failed, retry in 60s 
+2026-07-20  3:45:57.26 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:46:29.04 - upload failed, retry in 60s 
+2026-07-20  3:46:29.83 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:47:01.37 - upload failed, retry in 60s 
+2026-07-20  3:47:02.14 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:47:31.71 - upload failed, retry in 60s 
+2026-07-20  3:47:32.65 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:48:05.05 - upload failed, retry in 60s 
+2026-07-20  3:48:10.50 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482878467)
+2026-07-20  3:48:13.78 - upload failed, retry in 60s 
+2026-07-20  3:48:14.62 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:48:55.46 - upload failed, retry in 60s 
+2026-07-20  3:48:56.23 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:49:27.52 - upload failed, retry in 60s 
+2026-07-20  3:49:30.32 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:49:40.03 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:50:10.66 - upload failed, retry in 60s 
+2026-07-20  3:50:22.27 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:50:54.06 - upload failed, retry in 60s 
+2026-07-20  3:50:54.87 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:51:28.30 - upload failed, retry in 60s 
+2026-07-20  3:51:31.10 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:51:33.91 - attempting upload 
+release not found
+2026-07-20  3:51:36.76 - upload failed, retry in 60s 
+2026-07-20  3:51:37.39 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:52:09.56 - upload failed, retry in 60s 
+2026-07-20  3:52:10.31 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:52:49.69 - upload failed, retry in 60s 
+2026-07-20  3:52:50.56 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482881907)
+2026-07-20  3:52:53.55 - upload failed, retry in 60s 
+2026-07-20  3:52:54.34 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:53:26.00 - upload failed, retry in 60s 
+2026-07-20  3:53:26.94 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:53:58.35 - upload failed, retry in 60s 
+2026-07-20  3:53:59.11 - attempting upload 
+release not found
+2026-07-20  3:54:01.63 - upload failed, retry in 60s 
+2026-07-20  3:54:04.28 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:54:07.20 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:54:38.61 - upload failed, retry in 60s 
+2026-07-20  3:54:41.26 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:54:44.28 - attempting upload 
+release not found
+2026-07-20  3:54:46.97 - upload failed, retry in 60s 
+2026-07-20  3:54:47.63 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:55:18.07 - upload failed, retry in 60s 
+2026-07-20  3:55:18.82 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:55:50.12 - upload failed, retry in 60s 
+2026-07-20  3:55:53.60 - attempting upload 
+release not found
+2026-07-20  3:55:56.10 - upload failed, retry in 60s 
+2026-07-20  3:55:56.83 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:56:24.28 - upload failed, retry in 60s 
+2026-07-20  3:56:28.35 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:57:02.95 - upload failed, retry in 60s 
+2026-07-20  3:57:03.69 - attempting upload 
+release not found
+2026-07-20  3:57:06.18 - upload failed, retry in 60s 
+2026-07-20  3:57:08.67 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  3:57:11.60 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482885998)
+2026-07-20  3:57:14.56 - upload failed, retry in 60s 
+2026-07-20  3:57:15.33 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482885998)
+2026-07-20  3:57:18.12 - upload failed, retry in 60s 
+2026-07-20  3:57:18.73 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:57:50.16 - upload failed, retry in 60s 
+2026-07-20  3:57:52.86 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:58:02.42 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  3:58:34.00 - upload failed, retry in 60s 
+2026-07-20  3:58:45.76 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  3:58:49.96 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  3:59:20.60 - upload failed, retry in 60s 
+2026-07-20  3:59:21.37 - attempting upload 
+release not found
+2026-07-20  3:59:23.89 - upload failed, retry in 60s 
+2026-07-20  3:59:31.64 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:00:01.99 - upload failed, retry in 60s 
+2026-07-20  4:00:04.59 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  4:00:11.88 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:00:43.35 - upload failed, retry in 60s 
+2026-07-20  4:00:44.14 - attempting upload 
+release not found
+2026-07-20  4:00:46.82 - upload failed, retry in 60s 
+2026-07-20  4:00:47.44 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:01:15.81 - upload failed, retry in 60s 
+2026-07-20  4:01:16.77 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:01:48.99 - upload failed, retry in 60s 
+2026-07-20  4:01:51.81 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  4:01:54.65 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482890185)
+2026-07-20  4:01:57.65 - upload failed, retry in 60s 
+2026-07-20  4:01:58.22 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:02:31.72 - upload failed, retry in 60s 
+2026-07-20  4:02:32.50 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:03:00.97 - upload failed, retry in 60s 
+2026-07-20  4:03:03.66 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  4:03:08.65 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:03:42.29 - upload failed, retry in 60s 
+2026-07-20  4:03:43.23 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482891705)
+2026-07-20  4:03:46.21 - upload failed, retry in 60s 
+2026-07-20  4:03:46.86 - attempting upload 
+release not found
+2026-07-20  4:03:49.34 - upload failed, retry in 60s 
+2026-07-20  4:03:51.99 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  4:03:56.27 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482891961)
+2026-07-20  4:04:04.38 - upload failed, retry in 60s 
+2026-07-20  4:04:05.18 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482891961)
+2026-07-20  4:04:08.14 - upload failed, retry in 60s 
+2026-07-20  4:04:08.79 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482891705)
+2026-07-20  4:04:11.63 - upload failed, retry in 60s 
+2026-07-20  4:04:12.36 - attempting upload 
+HTTP 404: Not Found (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482891961)
+2026-07-20  4:04:16.26 - upload failed, retry in 60s 
+2026-07-20  4:04:17.04 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482891705)
+2026-07-20  4:04:19.83 - upload failed, retry in 60s 
+2026-07-20  4:04:24.60 - attempting upload 
+release not found
+2026-07-20  4:04:27.33 - upload failed, retry in 60s 
+2026-07-20  4:04:27.92 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:04:59.15 - upload failed, retry in 60s 
+2026-07-20  4:05:01.96 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  4:05:04.91 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:05:36.02 - upload failed, retry in 60s 
+2026-07-20  4:05:37.00 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:06:09.33 - upload failed, retry in 60s 
+2026-07-20  4:06:10.29 - attempting upload 
+release not found
+2026-07-20  4:06:12.81 - upload failed, retry in 60s 
+2026-07-20  4:06:13.42 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:06:44.84 - upload failed, retry in 60s 
+2026-07-20  4:06:47.49 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  4:06:53.61 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:07:27.27 - upload failed, retry in 60s 
+2026-07-20  4:07:30.06 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  4:07:32.88 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:08:07.24 - upload failed, retry in 60s 
+2026-07-20  4:08:14.98 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482895674)
+2026-07-20  4:08:17.93 - upload failed, retry in 60s 
+2026-07-20  4:08:18.57 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482895674)
+2026-07-20  4:08:21.34 - upload failed, retry in 60s 
+2026-07-20  4:08:22.28 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482895674)
+2026-07-20  4:08:25.04 - upload failed, retry in 60s 
+2026-07-20  4:08:34.37 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482895674)
+2026-07-20  4:08:37.51 - upload failed, retry in 60s 
+2026-07-20  4:08:38.34 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:09:10.99 - upload failed, retry in 60s 
+2026-07-20  4:09:15.22 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:09:47.57 - upload failed, retry in 60s 
+2026-07-20  4:09:48.35 - attempting upload 
+release not found
+2026-07-20  4:09:50.90 - upload failed, retry in 60s 
+2026-07-20  4:09:59.39 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:10:29.21 - upload failed, retry in 60s 
+2026-07-20  4:10:29.98 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:11:02.23 - upload failed, retry in 60s 
+2026-07-20  4:11:03.19 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:11:36.61 - upload failed, retry in 60s 
+2026-07-20  4:11:37.41 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:12:05.95 - upload failed, retry in 60s 
+2026-07-20  4:12:06.75 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:12:39.97 - upload failed, retry in 60s 
+2026-07-20  4:12:40.74 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:13:13.20 - upload failed, retry in 60s 
+2026-07-20  4:13:14.01 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:13:51.40 - upload failed, retry in 60s 
+2026-07-20  4:13:52.19 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482900338)
+2026-07-20  4:13:55.20 - upload failed, retry in 60s 
+2026-07-20  4:13:55.84 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482900338)
+2026-07-20  4:13:58.68 - upload failed, retry in 60s 
+2026-07-20  4:13:59.60 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482900338)
+2026-07-20  4:14:02.41 - upload failed, retry in 60s 
+2026-07-20  4:14:08.53 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482900338)
+2026-07-20  4:14:11.56 - upload failed, retry in 60s 
+2026-07-20  4:14:12.40 - attempting upload 
+HTTP 422: Validation Failed (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+ReleaseAsset.name already exists
+2026-07-20  4:14:42.76 - upload failed, retry in 60s 
+2026-07-20  4:14:48.92 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:15:22.60 - upload failed, retry in 60s 
+2026-07-20  4:15:23.39 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482902117)
+2026-07-20  4:15:26.35 - upload failed, retry in 60s 
+2026-07-20  4:15:27.23 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482902117)
+2026-07-20  4:15:30.20 - upload failed, retry in 60s 
+2026-07-20  4:15:34.79 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482902117)
+2026-07-20  4:15:37.76 - upload failed, retry in 60s 
+2026-07-20  4:15:40.36 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  4:15:43.32 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482902117)
+2026-07-20  4:15:46.19 - upload failed, retry in 60s 
+2026-07-20  4:15:47.01 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482902117)
+2026-07-20  4:15:49.86 - upload failed, retry in 60s 
+2026-07-20  4:15:50.51 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/assets/482902117)
+2026-07-20  4:15:53.64 - upload failed, retry in 60s 
+2026-07-20  4:16:01.28 - attempting upload 
+HTTP 503: No server is currently available to service your request. Sorry about that. Please try resubmitting your request and contact us if the problem persists. (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+2026-07-20  4:16:40.33 - upload failed, retry in 60s 
+2026-07-20  4:16:43.00 - release missing, recreating 
+error checking for existing release: HTTP 503 (https://api.github.com/repos/KajusMar/yt-dlp-downloader/releases/tags/v1.0.0)
+2026-07-20  4:16:46.04 - attempting upload 
+release not found
+2026-07-20  4:16:48.71 - upload failed, retry in 60s 
+2026-07-20  4:16:49.38 - attempting upload 
+HTTP 502: Error creating policy (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+2026-07-20  4:17:21.69 - upload failed, retry in 60s 
+2026-07-20  4:17:24.49 - release missing, recreating 
+a release with the same tag name already exists: v1.0.0
+2026-07-20  4:17:28.78 - attempting upload 
+HTTP 422: Validation Failed (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader.xpi)
+ReleaseAsset.name already exists
+2026-07-20  4:17:50.23 - upload failed, retry in 60s 
+2026-07-20  4:17:55.98 - attempting upload 
+HTTP 422: Validation Failed (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+ReleaseAsset.name already exists
+2026-07-20  4:18:34.59 - upload failed, retry in 60s 
+2026-07-20  4:18:35.35 - attempting upload 
+HTTP 422: Validation Failed (https://uploads.github.com/repos/KajusMar/yt-dlp-downloader/releases/356460048/assets?label=&name=yt-dlp-downloader-v1.0.0.xpi)
+ReleaseAsset.name already exists
+2026-07-20  4:19:00.60 - upload failed, retry in 60s 
+2026-07-20  4:19:01.43 - attempting upload 
+2026-07-20  4:19:15.24 - UPLOAD SUCCESS 
+2026-07-20  4:19:15.24 - shutting down device 

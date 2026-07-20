@@ -51,19 +51,47 @@ if %errorlevel% neq 0 (
 echo.
 echo [4/4] Installing native messaging manifest...
 
-REM Firefox / Floorp manifest location
-set "FF_MANIFEST_DIR=%APPDATA%\\Mozilla\\NativeMessagingHosts"
+REM Firefox/Floorp manifest file location (also written for non-Windows parity
+REM and for the Linux/Mac lookup path which resolves ...Mozilla\NativeMessagingHosts).
+set "FF_MANIFEST_DIR=%APPDATA%\Mozilla\NativeMessagingHosts"
 if not exist "%FF_MANIFEST_DIR%" mkdir "%FF_MANIFEST_DIR%"
 
-REM Copy manifest verbatim (path is relative host.bat, resolved next to the manifest file)
-copy /Y "%MANIFEST%" "%FF_MANIFEST_DIR%\\com.kajusmar.ytdlp_downloader.json" >nul
+REM Firefox launches native hosts with the BROWSER's working directory
+REM (e.g. C:\Program Files\Ablaze Floorp\), NOT the manifest's folder. So the
+REM "path" MUST be absolute, or connectNative fails with "Native host not
+REM available". We rewrite the manifest's path to the absolute host.exe here.
+set "HOST_EXE_ABS=%~dp0..\native_host\host.exe"
+REM Normalize to a clean absolute path
+for %%I in ("%HOST_EXE_ABS%") do set "HOST_EXE_ABS=%%~fI"
+set "MANIFEST_DST=%FF_MANIFEST_DIR%\com.kajusmar.ytdlp_downloader.json"
+
+powershell -NoProfile -Command ^
+  "$json=Get-Content '%MANIFEST%' -Raw | ConvertFrom-Json;" ^
+  "$json.path='%HOST_EXE_ABS%';" ^
+  "$out=$json | ConvertTo-Json -Compress;" ^
+  "Set-Content -Encoding ASCII '%MANIFEST_DST%' $out"
+
+REM === CRITICAL (Windows only) ===
+REM On Windows, Firefox/Floorp does NOT scan the NativeMessagingHosts folder.
+REM It reads the REGISTRY instead:
+REM   HKCU\Software\Mozilla\NativeMessagingHosts\<name>  =  <path to manifest JSON>
+REM (Hardcoded "Software\Mozilla" in modules/NativeManifests.sys.mjs, even for
+REM Floorp.) Without this registry entry, connectNative can never find the host.
+powershell -NoProfile -Command ^
+  "New-Item -Path 'HKCU:\Software\Mozilla\NativeMessagingHosts' -Force | Out-Null;" ^
+  "New-ItemProperty -Path 'HKCU:\Software\Mozilla\NativeMessagingHosts' -Name 'com.kajusmar.ytdlp_downloader' -Value '%MANIFEST_DST%' -PropertyType String -Force | Out-Null;" ^
+  "Write-Host 'Registry key set: HKCU:\Software\Mozilla\NativeMessagingHosts\com.kajusmar.ytdlp_downloader = %MANIFEST_DST%'"
+
 if %errorlevel% neq 0 (
     echo ERROR: Failed to install manifest
     pause
     exit /b 1
 )
 
-echo Manifest installed to: %FF_MANIFEST_DIR%\\com.kajusmar.ytdlp_downloader.json
+echo Manifest installed:
+echo   file : %MANIFEST_DST%
+echo   host : %HOST_EXE_ABS%
+echo   registry: HKCU\Software\Mozilla\NativeMessagingHosts\com.kajusmar.ytdlp_downloader
 
 echo.
 echo ==========================================

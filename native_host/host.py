@@ -140,17 +140,27 @@ class NativeHost:
     
     def _yt_dlp_python(self):
         """Find a python interpreter that actually has yt-dlp installed.
-        sys.executable may be a venv without yt-dlp (e.g. an app venv), so
-        probe a few candidates and return the first that can run `yt_dlp`.
-        The probe redirects its own stdio to DEVNULL so it never inherits or
-        contends with host.py's native-messaging pipes, and uses a short
-        timeout so a slow/hanging candidate can't stall the whole download."""
+
+        sys.executable may be a venv without yt-dlp, or -- when this script is
+        bundled as a PyInstaller .exe -- sys.executable is the .exe itself,
+        which would "accept" any args and lead to a malformed yt-dlp command.
+        So we NEVER probe sys.executable; we only probe real python launchers
+        (python, py, python3) plus the known uv interpreter path, and return
+        the first that imports yt_dlp."""
+        exe = os.path.realpath(sys.executable).lower()
         candidates = []
         for name in ('python', 'py', 'python3'):
             candidates.append(name)
-        candidates.append(sys.executable)
+        # Known uv-managed interpreter that has yt-dlp on this machine
+        uv_py = os.path.join(os.environ.get('LOCALAPPDATA', ''),
+                             'uv', 'python', 'cpython-3.11-windows-x86_64-none', 'python.exe')
+        if uv_py:
+            candidates.append(uv_py)
         for cand in candidates:
             try:
+                c = os.path.realpath(cand).lower() if os.path.exists(cand) else cand.lower()
+                if c == exe:
+                    continue  # never use our own executable as the yt-dlp runner
                 r = subprocess.run(
                     [cand, '-c', 'import yt_dlp'],
                     stdout=subprocess.DEVNULL,
@@ -161,8 +171,8 @@ class NativeHost:
                     return cand
             except Exception:
                 continue
-        # Fall back to sys.executable even if probe failed
-        return sys.executable
+        # Last resort: plain python on PATH
+        return 'python'
 
     def run_download(self, request_id, url, options):
         """Run download in a thread"""
