@@ -179,7 +179,13 @@ class NativeHost:
     def run_download(self, request_id, url, options):
         """Run download in a thread"""
         try:
-            output_dir = options.get('outputDir', DOWNLOAD_DIR)
+            # Resolve output dir: prefer explicit outputDir, else DOWNLOAD_DIR,
+            # else a sane default. Guard against empty/invalid values so the
+            # file never lands in host.exe's CWD by accident.
+            output_dir = options.get('outputDir') or DOWNLOAD_DIR or os.path.join(os.path.expanduser('~'), 'Videos', 'yt-dlp')
+            output_dir = os.path.abspath(os.path.expanduser(output_dir))
+            if not output_dir or output_dir.strip() in ('', '.'):
+                output_dir = os.path.join(os.path.expanduser('~'), 'Videos', 'yt-dlp')
             Path(output_dir).mkdir(parents=True, exist_ok=True)
             
             # Pick a python that has yt-dlp
