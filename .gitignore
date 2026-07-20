@@ -1,0 +1,26 @@
+# Build artifacts
+__pycache__/
+*.spec
+host_old.exe
+build/
+dist/build/
+
+# Native host (compiled)
+native_host/host.exe
+
+# Stray downloads / media
+*.webm
+*.mp4
+*.mp3
+*.m4a
+
+# Logs / temp
+*.log
+host_spawned.log
+desktop_raw.json
+*.png
+
+# Python
+venv/
+.venv/
+*.egg-info/
