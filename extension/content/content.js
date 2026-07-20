@@ -5,7 +5,14 @@
 
 (function() {
   'use strict';
-  
+
+  // Always-on marker so automated tests / debugging can confirm injection.
+  try {
+    if (document.documentElement) {
+      document.documentElement.dataset.ytdlpCs = 'loaded';
+    }
+  } catch (e) {}
+
   // Supported video hosting domains
   const VIDEO_DOMAINS = [
     'youtube.com',
@@ -487,6 +494,25 @@
         const list = scanAndGet();
         if (sendResponse) sendResponse({ videos: list });
         return true;
+      }
+    });
+
+    // Test/automation hook: lets a page (or Selenium) trigger an API call
+    // from the content-script scope. Uses postMessage, which crosses the
+    // page <-> content-script world boundary (unlike window.addEventListener
+    // on CustomEvent, which is isolated per world).
+    window.addEventListener('message', (ev) => {
+      const data = ev.data;
+      if (!data || data.__yt_dlp_e2e !== true) return;
+      const msg = data.message || {};
+      try {
+        browser.runtime.sendMessage(msg).then((res) => {
+          window.postMessage({ __yt_dlp_e2e_result: true, token: data.token, result: res }, '*');
+        }).catch((err) => {
+          window.postMessage({ __yt_dlp_e2e_result: true, token: data.token, result: { error: String(err) } }, '*');
+        });
+      } catch (err) {
+        window.postMessage({ __yt_dlp_e2e_result: true, token: data.token, result: { error: 'CS-THROW: ' + String(err) } }, '*');
       }
     });
   }

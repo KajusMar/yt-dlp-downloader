@@ -102,8 +102,9 @@ class NativeHost:
     def handle_get_info(self, request_id, url):
         """Get video info without downloading"""
         try:
+            py = self._yt_dlp_python()
             cmd = [
-                sys.executable, '-m', 'yt_dlp',
+                py, '-m', 'yt_dlp',
                 '--dump-json',
                 '--no-download',
                 '--no-warnings',
@@ -137,14 +138,45 @@ class NativeHost:
         except Exception as e:
             self.send_response(request_id, error=str(e))
     
+    def _yt_dlp_python(self):
+        """Find a python interpreter that actually has yt-dlp installed.
+        sys.executable may be a venv without yt-dlp (e.g. an app venv), so
+        probe a few candidates and return the first that can run `yt_dlp`.
+        The probe redirects its own stdio to DEVNULL so it never inherits or
+        contends with host.py's native-messaging pipes, and uses a short
+        timeout so a slow/hanging candidate can't stall the whole download."""
+        candidates = []
+        for name in ('python', 'py', 'python3'):
+            candidates.append(name)
+        candidates.append(sys.executable)
+        for cand in candidates:
+            try:
+                r = subprocess.run(
+                    [cand, '-c', 'import yt_dlp'],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    timeout=10
+                )
+                if r.returncode == 0:
+                    return cand
+            except Exception:
+                continue
+        # Fall back to sys.executable even if probe failed
+        return sys.executable
+
     def run_download(self, request_id, url, options):
         """Run download in a thread"""
         try:
             output_dir = options.get('outputDir', DOWNLOAD_DIR)
             Path(output_dir).mkdir(parents=True, exist_ok=True)
             
+            # Pick a python that has yt-dlp
+            py = self._yt_dlp_python()
+            if py == sys.executable:
+                self.log("WARNING: using sys.executable for yt-dlp; yt-dlp may be missing")
+            
             # Build yt-dlp command
-            cmd = [sys.executable, '-m', 'yt_dlp']
+            cmd = [py, '-m', 'yt_dlp']
             
             # Format selection
             fmt = options.get('format', 'bestvideo[height<=1080]+bestaudio/best[height<=1080]')
@@ -161,7 +193,6 @@ class NativeHost:
             # Other options
             cmd.extend([
                 '--no-warnings',
-                '--newline',  # Progress on newlines
                 '--progress-template', 'download:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s',
                 url
             ])
@@ -172,68 +203,84 @@ class NativeHost:
                 cmd.extend(['--cookies', str(cookies_file)])
             
             self.log(f"Starting download: {' '.join(cmd)}")
-            
-            # Run with progress tracking
+
+            # Run with progress tracking.
+            # IMPORTANT: give the child its own stdin (DEVNULL) so it does NOT
+            # inherit host.py's native-messaging stdin pipe. If it inherited it,
+            # closing that pipe (e.g. when the client disconnects) would SIGTERM
+            # the child and the download would die with code 143.
             proc = subprocess.Popen(
                 cmd,
+                stdin=subprocess.DEVNULL,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                bufsize=1,
-                universal_newlines=True
+                stderr=subprocess.STDOUT
             )
             
-            # Track this download
+            # Register so cancel works; do this BEFORE the read loop.
             with self._lock:
                 self.pending_downloads[request_id] = proc
-            
-            # Read output line by line
-            for line in proc.stdout:
+
+            # Read output as bytes and split on BOTH \r and \n. yt-dlp progress
+            # lines may use bare \r (when --newline is absent it uses \r for
+            # in-place updates), and Python's text-mode "for line in stream"
+            # only splits on \n, which would block until a \n arrives.
+            output_file = None
+            buf = b''
+            cancelled = False
+            while True:
                 with self._lock:
                     if request_id not in self.pending_downloads:
-                        # Cancelled
+                        cancelled = True
                         proc.terminate()
                         break
-                
-                line = line.strip()
-                if not line:
-                    continue
-                
-                # Parse progress
-                if line.startswith('download:'):
-                    try:
-                        parts = line[9:].split('|')
-                        if len(parts) >= 3:
-                            percent = parts[0].strip().replace('%', '')
-                            speed = parts[1].strip()
-                            eta = parts[2].strip()
-                            self.send_response(request_id, progress={
-                                'percent': float(percent) if percent != 'N/A' else 0,
-                                'speed': speed,
-                                'eta': eta,
-                                'status': 'downloading'
-                            })
-                    except:
-                        pass
-                elif '[download]' in line and '100%' in line:
-                    self.send_response(request_id, progress={
-                        'percent': 100,
-                        'status': 'processing'
-                    })
-                
-                # Log all output
-                self.log(line)
-            
-            # Wait for completion
-            proc.wait()
-            
+                chunk = proc.stdout.read(1)
+                if not chunk:
+                    break
+                if chunk in (b'\r', b'\n'):
+                    if buf:
+                        line = buf.decode('utf-8', errors='replace').strip()
+                        buf = b''
+                        if 'Destination:' in line:
+                            output_file = line.split('Destination:', 1)[1].strip()
+                        if line.startswith('download:'):
+                            try:
+                                parts = line[9:].split('|')
+                                if len(parts) >= 3:
+                                    percent = parts[0].strip().replace('%', '')
+                                    speed = parts[1].strip()
+                                    eta = parts[2].strip()
+                                    self.send_response(request_id, progress={
+                                        'percent': float(percent) if percent != 'N/A' else 0,
+                                        'speed': speed,
+                                        'eta': eta,
+                                        'status': 'downloading'
+                                    })
+                            except Exception:
+                                pass
+                        elif '[download]' in line and '100%' in line:
+                            self.send_response(request_id, progress={'percent': 100, 'status': 'processing'})
+                        self.log(line)
+                else:
+                    buf += chunk
+
+            # Child stdout hit EOF; ensure the process has fully exited and
+            # its return code is available (proc.returncode can be None until wait()).
+            try:
+                proc.wait(timeout=30)
+            except Exception:
+                proc.kill()
+                proc.wait()
+
             with self._lock:
                 self.pending_downloads.pop(request_id, None)
-            
-            if proc.returncode == 0:
+
+            if cancelled:
+                self.send_response(request_id, {'status': 'cancelled'})
+            elif proc.returncode == 0:
                 self.send_response(request_id, {
                     'status': 'completed',
-                    'message': 'Download completed successfully'
+                    'message': 'Download completed successfully',
+                    'file': output_file
                 })
             else:
                 self.send_response(request_id, error=f"Download failed with code {proc.returncode}")
